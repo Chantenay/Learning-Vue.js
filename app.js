@@ -3,27 +3,23 @@ const app = Vue.createApp({
     // template: '<h2> Template </h2>'
     data() {
         return {
+            url: '', 
             showBooks: true, 
-            title: 'The Final Empire', 
-            author: 'Brandon',
-            age: 45, 
-            x: 0, 
-            y: 0
+            books: [
+                { title: 'name of the wind', author: 'patrick rothfuss', img: 'assets/1.jpeg', isFav: true },
+                { title: 'the way of kings', author: 'brandon sanderson', img: 'assets/2.jpeg', isFav: false },
+                { title: 'the final empire', author: 'brandon sanderson', img: 'assets/3.jpeg', isFav: true },
+            ]
         }
     },
     methods: {
         toggleShowBooks() {
             this.showBooks = !this.showBooks
-        },
-        handleEvent(e, data) {
-            console.log(e, e.type)
-            if (data) {
-                console.log(data)
-            }
-        }, 
-        handleMouseMove(e) {
-            this.x = e.offsetX
-            this.y = e.offsetY
+        }
+    }, 
+    computed: {
+        filteredBooks() {
+            return this.books.filter((book) => book.isFav)
         }
     }
 })
